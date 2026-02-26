@@ -3,10 +3,10 @@ const movie = {
   title: "Titanic",
   image: 'image_url',
   genre: ["Drama", "Romance"],
-  cast: {
-    lead: "Leonardo DiCaprio",
-    supporting: "Kate Winslet"
-  },
+  cast: [
+    { name: "Leonardo DiCaprio", role: "Jack Dawson" },
+    { name: "Kate Winslet", role: "Rose DeWitt Bukater" }
+  ],
   getDetails() {
     return `
     Title: ${this.title}
@@ -15,11 +15,11 @@ const movie = {
     `;
   },
   getCast: function() {
-    const { lead, supporting } = this.cast;
-    return `
-    Lead Actor: ${lead}
-    Supporting Actor: ${supporting}
-    `;
+    let members = [];
+    for (let member of this.cast) {
+      members.push(`${member.name} as ${member.role}`);
+    }
+    return members.join("\n");
   },
   setTitle(newTitle) {
     this.title = newTitle;
