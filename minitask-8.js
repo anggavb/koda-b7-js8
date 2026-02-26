@@ -8,18 +8,24 @@ const movie = {
     { name: "Kate Winslet", role: "Rose DeWitt Bukater" }
   ],
   getDetails() {
+    let genres = "";
+    for (let i = 0; i < this.genre.length; i++) {
+      genres += `${this.genre[i]}, `;
+    }
+
     return `
     Title: ${this.title}
     Image: ${this.image}
-    Genre: ${this.genre.join(", ")}
+    Genre: ${genres}
     `;
   },
   getCast: function() {
-    let members = [];
-    for (let member of this.cast) {
-      members.push(`${member.name} as ${member.role}`);
+    let members = "";
+    for (let i = 0; i < this.cast.length; i++) {
+      const member = this.cast[i];
+      members += `${member.name} as ${member.role}\n`;
     }
-    return members.join("\n");
+    return members;
   },
   setTitle(newTitle) {
     this.title = newTitle;
